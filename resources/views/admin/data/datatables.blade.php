@@ -6,7 +6,8 @@
 
 <body>
   <!--  Body Wrapper -->
-  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" 
+    data-sidebartype="full"
     data-sidebar-position="fixed" data-header-position="fixed">
     
 
@@ -93,7 +94,7 @@
                         <thead>
                           <tr>
                             <th scope="col" class="text-center">No</th>
-                            <th scope="col">Full Name</th>
+                            <th scope="col">Nama Lengkap</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
                            
@@ -102,25 +103,28 @@
                         </thead>
                         <tbody class="table-group-divider">
                          
+                          @php $no = 1; @endphp
+                          @foreach ($users as $user)
+                          <tr>
+                            <td scope="row" data-title="No" class="text-center">{{ $no++ }}</td>
+                            <td data-title="Nama Lengkap">{{ $user->nama }}</td>
+                            <td data-title="Email">{{ $user->email }}</td>
+                            <td data-title="Status">Selesai</td>
+                            <th class="d-flex justify-content-center">
+                              <a class="btn btn-primary btn-sm me-2"
+                                  href=""><i class="fa-sharp fa-solid fa-magnifying-glass"></i>  Detail</a>
+                              <a class="btn btn-success btn-sm me-2"
+                                  href=""><i class="fa-solid fa-pencil"></i> Update</a>
+                              <form method="POST" action=""
+                                  style="display: inline-block;">
+                                
+                                  <button class="btn btn-danger btn-sm"
+                                      onclick="return confirm('Delete?')"><i class="fa-solid fa-trash"></i>  Delete</button>
+                              </form>
+                            </th>
+                          </tr>
+                          @endforeach
                             
-                            <tr>
-                              <td scope="row" data-title="No" class="text-center">1</td>
-                              <td data-title="Full Name">Andika</td>
-                              <td data-title="Email">dummy@gmail.com</td>
-                              <td data-title="Status">Selesai</td>
-                              <th class="d-flex justify-content-center">
-                                <a class="btn btn-primary btn-sm me-2"
-                                    href=""><i class="fa-sharp fa-solid fa-magnifying-glass"></i>  Detail</a>
-                                <a class="btn btn-success btn-sm me-2"
-                                    href=""><i class="fa-solid fa-pencil"></i> Update</a>
-                                <form method="POST" action=""
-                                    style="display: inline-block;">
-                                  
-                                    <button class="btn btn-danger btn-sm"
-                                        onclick="return confirm('Delete?')"><i class="fa-solid fa-trash"></i>  Delete</button>
-                                </form>
-                              </th>
-                            </tr>
                             
                         </tbody>
                         
