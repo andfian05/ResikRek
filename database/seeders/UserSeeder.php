@@ -17,15 +17,11 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 1,
             'nama' => 'Superadmin Resik Rek',
-            'username' => 'supera_rek',
-            'email' => 'supera.rek@gmail.com',
-            'password' => Hash::make('Superad52@admin'),
-            'tmp_lahir' => 'Jombang',
-            'tgl_lahir' => date('Y-m-d'),
-            'gender' => '',
-            'jabatan' => 'Admin',
-            'role' => 'Superadmin',
+            'penempatan' => '',
             'foto' => '',
+            'username' => 'supera_rek',
+            'password' => Hash::make('Superad52@admin'),
+            'role' => 'Superadmin',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
@@ -33,15 +29,11 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'id' => 2,
             'nama' => 'Admin Resik Rek',
-            'username' => 'admin_rek',
-            'email' => 'admin.rek@gmail.com',
-            'password' => Hash::make('Adminn13@admin'),
-            'tmp_lahir' => 'Jombang',
-            'tgl_lahir' => date('Y-m-d'),
-            'gender' => '',
-            'jabatan' => 'Admin',
-            'role' => 'Admin',
+            'penempatan' => '',
             'foto' => '',
+            'username' => 'admin_rek',
+            'password' => Hash::make('Adminn13@admin'),
+            'role' => 'Admin',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);

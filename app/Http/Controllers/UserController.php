@@ -18,7 +18,7 @@ class UserController extends Controller
         $admin = Auth::user();
         $users = User::all();
 
-        return view('admin.data.datatables')->with([
+        return view('admin.manage-user.index')->with([
             'admin' => $admin,
             'users' => $users,
         ]);
@@ -27,9 +27,13 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $admin = Auth::user();
+
+        return view('admin.manage-user.create')->with([
+            'admin' => $admin,
+        ]);
     }
 
     /**
@@ -37,7 +41,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $fotoName = $data['foto']->getClientOriginalName() . '-' . time() . '.' .$data['foto']->extention();
+        $data['foto']->move(public_path('img/profile', $fotoName));
+
+        User::create([
+            'nama' => $data['nama'],
+            'penempatan' => $data['penempatan'],
+            'foto' => $fotoName,
+            'username' => $data['username'],
+            'password' => $data['password'],
+            'role' => $data['role'],
+        ]);
     }
 
     /**
