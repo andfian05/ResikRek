@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+
 use App\Models\User;
 
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +20,7 @@ class UserController extends Controller
         $admin = Auth::user();
         $users = User::all();
 
-        return view('admin.manage-user.index')->with([
+        return view('admin.manage-user.data-user')->with([
             'admin' => $admin,
             'users' => $users,
         ]);
@@ -31,7 +33,7 @@ class UserController extends Controller
     {
         $admin = Auth::user();
 
-        return view('admin.manage-user.create')->with([
+        return view('admin.manage-user.add-user')->with([
             'admin' => $admin,
         ]);
     }
@@ -39,11 +41,11 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $request->all();
 
-        $fotoName = $data['foto']->getClientOriginalName() . '-' . time() . '.' .$data['foto']->extention();
+        $fotoName = $data['foto']->getClientOriginalName() . '-' . time() . '.' .$data['foto']->extension();
         $data['foto']->move(public_path('img/profile', $fotoName));
 
         User::create([
@@ -51,9 +53,11 @@ class UserController extends Controller
             'penempatan' => $data['penempatan'],
             'foto' => $fotoName,
             'username' => $data['username'],
-            'password' => $data['password'],
-            'role' => $data['role'],
+            'password' => Hash::make($data['password']),
+            'role' => 'karyawan',
         ]);
+
+        return redirect()->route('manage-users.index')->with('success', 'Data Management User Berhasil Ditambahkan!');
     }
 
     /**

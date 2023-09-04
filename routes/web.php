@@ -40,7 +40,7 @@ Route::middleware('auth:admin')->prefix('admin')->group(function () {
     Route::get('/', [HomeController::class, 'dashboardAdmin']);
 
     /** Data Users */
-    Route::resource('users', UserController::class);
+    Route::resource('manage-users', UserController::class);
 });
 
 /** Auth */

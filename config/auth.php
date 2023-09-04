@@ -40,6 +40,43 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+            'hash' => false,
+        ],
+        
+        'superadmin' => [
+            'driver' => 'session',
+            'provider' => 'superadmin',
+        ],
+
+        'apisuperadmin' => [
+            'driver' => 'token',
+            'provider' => 'superadmin',
+        ],
+        
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'apiadmin' => [
+            'driver' => 'token',
+            'provider' => 'admin',
+        ],
+        
+        'karyawan' => [
+            'driver' => 'session',
+            'provider' => 'karyawan',
+        ],
+
+        'apikaryawan' => [
+            'driver' => 'token',
+            'provider' => 'karyawan',
+        ],
+
     ],
 
     /*
@@ -61,6 +98,21 @@ return [
 
     'providers' => [
         'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'superadmin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
+
+        'karyawan' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],

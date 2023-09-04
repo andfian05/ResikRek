@@ -2,7 +2,7 @@
 <html lang="en">
 
 {{-- Header.blade.php --}}
-@include('admin.layout.header')
+@include('admin.manage-user.layout.header')
 
 <body>
   <!--  Body Wrapper -->
@@ -12,7 +12,7 @@
     
 
     {{-- Sidebar.blade.php --}}
-    @include('admin.layout.sidebar')
+    @include('admin.manage-user.layout.sidebar')
 
 
 
@@ -21,7 +21,7 @@
       <!--  Header Start -->
       <header class="app-header">
          {{-- Navbar.blade.php --}}
-         @include('admin.layout.navbar')
+         @include('admin.manage-user.layout.navbar')
       </header>
       
 
@@ -31,7 +31,11 @@
             <div class="card-body">
             
               <h5 class="card-title fw-semibold mb-4 text-center">Data Lingkungan</h5>
-              <button type="button" class="btn btn-secondary m-1 mb-3"><i class="fa-solid fa-plus"></i>&nbsp; Tambah Data</button>
+             
+              <a class="btn btn-secondary m-1 mb-3" href="/add-user">
+                <i class="fa-solid fa-plus"></i>&nbsp;Add User
+              </a>
+             
               <button type="button" class="btn btn-info m-1 mb-3"><i class="fa-solid fa-file-pdf"></i>&nbsp; Export .PDF</button>
               <div class="card">
                 <div class="card-body">
@@ -83,7 +87,10 @@
               <hr>
     
               <h5 class="card-title fw-semibold mb-4 text-center">Data Pengguna</h5>
-              <button type="button" class="btn btn-secondary m-1 mb-3"><i class="fa-solid fa-plus"></i>&nbsp; Tambah Data</button>
+              
+              <a class="btn btn-secondary m-1 mb-3" href="{{ route('manage-users.create') }}">
+                <i class="fa-solid fa-plus"></i>&nbsp;Add User
+              </a>
               <button type="button" class="btn btn-info m-1 mb-3"><i class="fa-solid fa-file-pdf"></i>&nbsp; Export .PDF</button>
               <div class="card">
                 <div class="card-body">
@@ -95,8 +102,8 @@
                           <tr>
                             <th scope="col" class="text-center">No</th>
                             <th scope="col">Nama Lengkap</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Role</th>
                            
                             <th scope="col" class="text-center">Action</th> 
                           </tr>
@@ -108,8 +115,8 @@
                           <tr>
                             <td scope="row" data-title="No" class="text-center">{{ $no++ }}</td>
                             <td data-title="Nama Lengkap">{{ $user->nama }}</td>
-                            <td data-title="Email">{{ $user->email }}</td>
-                            <td data-title="Status">Selesai</td>
+                            <td data-title="Username">{{ $user->username }}</td>
+                            <td data-title="Status">{{ $user->role }}</td>
                             <th class="d-flex justify-content-center">
                               <a class="btn btn-primary btn-sm me-2"
                                   href=""><i class="fa-sharp fa-solid fa-magnifying-glass"></i>  Detail</a>
