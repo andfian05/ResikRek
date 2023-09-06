@@ -46,7 +46,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $fotoName = $data['foto']->getClientOriginalName() . '-' . time() . '.' .$data['foto']->extension();
-        $data['foto']->move(public_path('img/profile', $fotoName));
+        $data['foto']->move(public_path('img', $fotoName));
 
         User::create([
             'nama' => $data['nama'],
@@ -54,10 +54,10 @@ class UserController extends Controller
             'foto' => $fotoName,
             'username' => $data['username'],
             'password' => Hash::make($data['password']),
-            'role' => 'karyawan',
+            'role' => $data['role'],
         ]);
 
-        return redirect()->route('manage-users.index')->with('success', 'Data Management User Berhasil Ditambahkan!');
+        return redirect()->route('manage-users.index')->with('success', 'Data User Berhasil Ditambahkan!');
     }
 
     /**
@@ -65,7 +65,13 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $admin = Auth::user();
+        $user = User::findOrFail($id);
+
+        return view('admin.manage-user.detail-user')->with([
+            'admin' => $admin,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -73,15 +79,54 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $admin = Auth::user();
+        $user = User::findOrFail($id);
+
+        return view('admin.manage-user.edit-user')->with([
+            'admin' => $admin,
+            'user' => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-        //
+        $data = $request->all();
+        $user = User::findOrFail($id);
+
+        if ($data['foto'] != NULL) {
+            $fotoName = $data['foto']->getClientOriginalName() . '-' . time() . '.' . $data['foto']->extension();
+            $data['foto']->move(public_path('img', $fotoName));
+            if ($user->foto != NULL) {
+                unlink(public_path('img', $user->foto));
+            } else {
+                
+            }
+            
+        } else {
+            $fotoName = $user->foto;
+        }
+
+        if ($data['password'] == $user->password) {
+            $password = $user->password;
+        } else {
+            $password = Hash::make($data['password']);
+        }
+        
+        
+        User::where('id', $user->id)
+            ->update([
+            'nama' => $data['nama'],
+            'penempatan' => $data['penempatan'],
+            'foto' => $fotoName,
+            'username' => $data['username'],
+            'password' => $password,
+            'role' => $data['role'],
+        ]);
+
+        return redirect()->route('manage-users.index')->with('success', 'Data User Berhasil Diubah!');
     }
 
     /**
@@ -89,6 +134,10 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if(!empty($user->foto)) unlink(public_path('img', $user->foto));
+        $user->delete();
+
+        return redirect()->route('manage-users.index')->with('success', 'Data User Berhasil Dihapus!');
     }
 }

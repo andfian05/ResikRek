@@ -19,7 +19,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="/dashboard" aria-expanded="false">
+            <a class="sidebar-link" href="{{ url('/admin') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -36,7 +36,7 @@
               <span>
                 <i class="ti ti-article"></i>
               </span>
-              <span class="hide-menu">Datatables</span>
+              <span class="hide-menu">Manage Users</span>
             </a>
           </li>
           <li class="sidebar-item">

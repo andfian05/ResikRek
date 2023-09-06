@@ -2,7 +2,7 @@
 <html lang="en">
 
 {{-- Header.blade.php --}}
-@include('admin.management-user.layout.header')
+@include('admin.manage-user.layout.header')
 
 <body>
   <!--  Body Wrapper -->
@@ -12,7 +12,7 @@
     
 
     {{-- Sidebar.blade.php --}}
-    @include('admin.management-user.layout.sidebar')
+    @include('admin.manage-user.layout.sidebar')
 
 
 
@@ -21,7 +21,7 @@
       <!--  Header Start -->
       <header class="app-header">
          {{-- Navbar.blade.php --}}
-         @include('admin.management-user.layout.navbar')
+         @include('admin.manage-user.layout.navbar')
       </header>
       
 
@@ -29,60 +29,33 @@
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
-            
-              {{-- <h5 class="card-title fw-semibold mb-4 text-center">Add User</h5> --}}
-             
-              <a class="btn btn-success btn-sm-2" href="/admin/users">
-                <i class="fa-solid fa-circle-chevron-left"></i>&nbsp;Back
-              </a>
-
-
-              <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4 text-center">Detail User</h5>
+                <h5 class="card-title fw-semibold mb-5 text-center">Detail User</h5>
+                <a class="btn btn-success btn-sm-2 mb-3" href="{{ route('manage-users.index') }}">
+                  <i class="fa-solid fa-circle-chevron-left"></i>&nbsp;Back
+                </a>
                 <div class="card">
                   <div class="card-body">
                     <form>
                       <div class="mb-3">
                         <label for="nama" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control" id="nama" aria-describedby="">
+                        <input type="text" name="nama" class="form-control" value="{{ $user->nama }}" id="nama" disabled>
                         
                       </div>
                       <div class="mb-3">
-                        <label for="tmp_lahir" class="form-label">Tempat Lahir</label>
-                        <input type="text" class="form-control" id="tmp+_lahir" aria-describedby="">
-                        
-                      </div>
-                      <div class="mb-3">
-                        <label for="tgl_lahir" class="form-label">Tanggal Lahir</label>
-                        <input type="date" class="form-control" id="tgl_lahir" aria-describedby="">
-                        
-                      </div>
-                      <div class="mb-3">
-                        <label for="gender" class="form-label">Jenis Kelamin</label>
-                        <select name="" id="gender" type="text" class="form-control" aria-describedby="" value="">
-                          <option value="">--- Gender ---</option>
-                         
-                            <option value="">Male</option>
-                            <option value="">Female</option>
-                         
-                        </select>
-                      </div>
-                      <div class="mb-3">
-                        <label for="jabatan" class="form-label">Jabatan</label>
-                        <input type="text" class="form-control" id="jabatan" aria-describedby="">
+                        <label for="penempatan" class="form-label">Penempatan</label>
+                        <input type="text" name="penempatan" class="form-control" value="{{ $user->penempatan }}" id="penempatan" disabled>
                         
                       </div>
                       <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="">
+                        <input type="text" name="username" class="form-control" value="{{ $user->username }}" id="username" disabled>
                         
                       </div>
-                      <div class="mb-3">
+                      {{-- <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password">
-
-                      </div>
-                      <div class="mb-3">
+                        <input type="password" name="password" class="form-control"  value="{{ $user->password }}" id="password">
+                      </div> --}}
+                      {{-- <div class="mb-3">
                         <label for="role" class="form-label">Pemangku Kepentingan</label>
                         <select name="" id="role" type="text" class="form-control" aria-describedby="" value="">
                           <option value="">--- Role ---</option>
@@ -91,18 +64,13 @@
                             <option value="">Super Administrator</option>
                          
                         </select>
-                      </div>
-                      <div class="mb-3">
-                        <label for="foto" class="form-label">Foto</label>
-                        <input type="file" class="form-control" id="foto" aria-describedby="">
-                      </div>
-                      <br>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      </div> --}}
+                      {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
                     </form>
                   </div>
                 </div>
                 
-              </div>
+              {{-- </div> --}}
 
 
               

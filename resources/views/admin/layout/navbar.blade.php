@@ -18,7 +18,6 @@
         <li class="nav-item dropdown">
           <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
             aria-expanded="false">
-            {{ $admin->nama; }} &nbsp;
             <img src="{{asset('Templeate/src/assets/images/profile/user-1.jpg')}}" alt="" width="35"  
               height="35" class="rounded-circle">
           </a>
@@ -26,7 +25,7 @@
             <div class="message-body">
               <a href="javascript:void(0)" class="d-flex align-items-center gap-2 dropdown-item">
                 <i class="ti ti-user fs-6"></i>
-                <p class="mb-0 fs-3">My Profile</p>
+                <p class="mb-0 fs-3">{{ $admin->nama; }}</p>
               </a>
              
               <a href="#" role="button" 
